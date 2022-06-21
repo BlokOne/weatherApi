@@ -28,12 +28,7 @@ let store = {
 const fetchData = async () => {
    try {
       const query = localStorage.getItem('query') || store.city;
-      const location  = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=f02188b4bf768b68f9ed9c0e850da0e1`);
-      const loc = await location.json();
-      console.log(loc)
-      let longitude = loc[0].lon
-      let width = loc[0].lat
-      const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${longitude}&lon=${width}&appid=f02188b4bf768b68f9ed9c0e850da0e1&units=metric&lang=ru`);
+      const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=f02188b4bf768b68f9ed9c0e850da0e1&units=metric&lang=ru`);
       const data = await result.json();
       console.log(data)
       const timeNow = correctTime(data.timezone);
